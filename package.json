@@ -16,8 +16,7 @@
     "semver": "^7.6.2"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "devDependencies": {
     "@types/bun": "latest",
