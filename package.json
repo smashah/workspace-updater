@@ -1,0 +1,29 @@
+{
+  "name": "workspace-updater",
+  "version": "0.1.0",
+  "description": "A utility to check for outdated dependencies in a pnpm workspace catalog.",
+  "main": "src/index.ts",
+  "bin": {
+    "workspace-updater": "./bin/workspace-updater.ts"
+  },
+  "scripts": {
+    "start": "bun src/index.ts",
+    "build": "bun build ./src/index.ts --compile --outfile ./bin/workspace-udpater"
+  },
+  "dependencies": {
+    "@types/semver": "^7.5.8",
+    "js-yaml": "^4.1.0",
+    "semver": "^7.6.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/js-yaml": "^4.0.9"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
