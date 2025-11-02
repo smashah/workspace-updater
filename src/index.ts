@@ -1,7 +1,7 @@
-#!/usr/bin/env bun
-
 import { gt, prerelease, valid, diff } from 'semver';
 import * as yaml from 'js-yaml';
+import { access, readFile, writeFile } from 'fs/promises';
+import { constants } from 'fs';
 
 async function findPnpmWorkspaceFile(): Promise<string | null> {
   const searchPaths = [
@@ -15,9 +15,8 @@ async function findPnpmWorkspaceFile(): Promise<string | null> {
 
   for (const path of searchPaths) {
     try {
-      if (await Bun.file(path).exists()) {
-        return path;
-      }
+      await access(path, constants.F_OK);
+      return path;
     } catch (error) {
       // Continue to next path if this one fails
       continue;
@@ -26,7 +25,7 @@ async function findPnpmWorkspaceFile(): Promise<string | null> {
 
   return null;
 }
-const argv = new Set(Bun.argv);
+const argv = new Set(process.argv);
 const shouldUpdate = argv.has('--update');
 const updatePatch = argv.has('--patch');
 const updateMinor = argv.has('--minor');
@@ -35,10 +34,10 @@ const showHelp = argv.has('--help') || argv.has('-h');
 
 // Parse -w flag for workspace file path
 let workspaceFilePath: string | null = null;
-const bunArgv = Bun.argv;
-const wFlagIndex = bunArgv.findIndex(arg => arg === '-w');
-if (wFlagIndex !== -1 && wFlagIndex + 1 < bunArgv.length) {
-  workspaceFilePath = bunArgv[wFlagIndex + 1];
+const processArgv = process.argv;
+const wFlagIndex = processArgv.findIndex(arg => arg === '-w');
+if (wFlagIndex !== -1 && wFlagIndex + 1 < processArgv.length) {
+  workspaceFilePath = processArgv[wFlagIndex + 1] ?? null;
 }
 
 const helpText = `
@@ -96,9 +95,10 @@ async function checkDependencies() {
   
   if (workspaceFilePath) {
     // Use explicitly provided path
-    if (await Bun.file(workspaceFilePath).exists()) {
+    try {
+      await access(workspaceFilePath, constants.F_OK);
       pnpmWorkspacePath = workspaceFilePath;
-    } else {
+    } catch (error) {
       console.error(`Error: pnpm-workspace.yaml not found at specified path: ${workspaceFilePath}`);
       process.exit(1);
     }
@@ -114,7 +114,7 @@ async function checkDependencies() {
   console.log(`Found pnpm-workspace.yaml at: ${pnpmWorkspacePath}`);
   console.log('Reading pnpm-workspace.yaml...');
   try {
-    const fileContents = await Bun.file(pnpmWorkspacePath).text();
+    const fileContents = await readFile(pnpmWorkspacePath, 'utf-8');
     const doc = yaml.load(fileContents) as PnpmWorkspace;
     const catalog = doc.catalog || {};
 
@@ -181,7 +181,7 @@ async function checkDependencies() {
           }
         });
         const newYaml = yaml.dump(doc);
-        await Bun.write(pnpmWorkspacePath, newYaml);
+        await writeFile(pnpmWorkspacePath, newYaml, 'utf-8');
         console.log('pnpm-workspace.yaml has been updated.');
       }
     } else {

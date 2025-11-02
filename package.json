@@ -4,11 +4,12 @@
   "description": "A utility to check for outdated dependencies in a pnpm workspace catalog.",
   "main": "src/index.ts",
   "bin": {
-    "workspace-updater": "./bin/workspace-updater"
+    "workspace-updater": "./bin/wu"
   },
   "scripts": {
     "start": "bun src/index.ts",
-    "build": "bun build ./src/index.ts --compile --outfile ./bin/workspace-udpater"
+    "build-compile": "bun build ./src/index.ts --compile --outfile ./bin/wu",
+    "build-node": "bun build ./src/index.ts --outdir ./dist --target node --format cjs"
   },
   "dependencies": {
     "@types/semver": "^7.5.8",
