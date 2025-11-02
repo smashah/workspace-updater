@@ -1,6 +1,6 @@
 {
   "name": "workspace-updater",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "A utility to check for outdated dependencies in a pnpm workspace catalog.",
   "main": "src/index.ts",
   "bin": {
