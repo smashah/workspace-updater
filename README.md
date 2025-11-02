@@ -2,10 +2,10 @@
 
 `workspace-updater` is a command-line utility for auditing and updating the `catalog` in your `pnpm-workspace.yaml` file. It helps you keep your shared workspace dependencies up-to-date by checking them against the npm registry, grouping them by release type (major, minor, patch), and optionally updating them for you.
 
-![workspace-updater-demo](https://user-images.githubusercontent.com/12345/67890.png) <!--- Placeholder for a demo GIF -->
+![workspace-updater-demo](https://raw.githubusercontent.com/smashah/workspace-updater/refs/heads/main/docs/screenshot.png)
 
 
-[![asciicast](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3.svg)](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3)
+[![asciicast](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3.svg)](https://raw.githubusercontent.com/smashah/workspace-updater/refs/heads/main/docs/workspace-updater.cast)
 
 ## Why workspace-updater?
 
