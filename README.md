@@ -5,7 +5,7 @@
 ![workspace-updater-demo](https://raw.githubusercontent.com/smashah/workspace-updater/refs/heads/main/docs/screenshot.png)
 
 
-[![asciicast](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3.svg)](https://raw.githubusercontent.com/smashah/workspace-updater/refs/heads/main/docs/workspace-updater.cast)
+[![asciicast](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3.svg)](https://asciinema.org/a/lMlpBvq9nwRmyS5YeGdHvxXdP)
 
 ## Why workspace-updater?
 
