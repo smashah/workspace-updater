@@ -4,6 +4,9 @@
 
 ![workspace-updater-demo](https://user-images.githubusercontent.com/12345/67890.png) <!--- Placeholder for a demo GIF -->
 
+
+[![asciicast](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3.svg)](https://asciinema.org/a/bJMOlPe5F4mFLY0Rl6fiJSOp3)
+
 ## Why workspace-updater?
 
 Managing shared dependencies in a pnpm workspace `catalog` can be tedious. `workspace-updater` automates this process, providing a clear, color-coded overview of what's outdated and giving you fine-grained control over what gets updated.
